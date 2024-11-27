@@ -62,7 +62,7 @@ class ProductController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/products', $image->hashName());
+        $image->storeAs('products', $image->hashName());
 
         //create product
         Product::create([
@@ -133,10 +133,10 @@ class ProductController extends Controller
 
             //upload new image
             $image = $request->file('image');
-            $image->storeAs('public/products', $image->hashName());
+            $image->storeAs('products', $image->hashName());
 
             //delete old image
-            Storage::delete('public/products/' . $product->image);
+            Storage::delete('products/' . $product->image);
 
             //update product with new image
             $product->update([
@@ -173,7 +173,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         //delete image
-        Storage::delete('public/products/' . $product->image);
+        Storage::delete('products/' . $product->image);
 
         //delete product
         $product->delete();
